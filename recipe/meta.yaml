@@ -1,17 +1,16 @@
-{% set name = "cfg" %}
-{% set version = "9.0.0" %}
+{% set name = "Cfg" %}
 {% set tag = "v9r0" %}
+{% set version = "9.0.0" %}
 
 package:
-   name: "{{ name|lower }}"
-   version: "{{ version }}"
-
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
 source:
-   url: https://git.ligo.org/virgo/virgoapp/Cfg/-/archive/{{ tag }}/Cgf-{{ tag }}.tar.gz
-   sha256: 40ff7b98d515e754a2d6d0a2eebdd995483a63a4fa7c3b804ea79c7b9ca5bb24
+  url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ tag }}/{{ name }}-{{ tag }}.tar.gz
+  sha256: 3151c52234e1afc5540aad004b28dddf702377c939bf9e68181de6ee9ac86701
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or osx]
 
 requirements:
@@ -32,7 +31,7 @@ test:
     - pkg-config
   commands:
     - test -r ${PREFIX}/lib/libcfg.so
-    - test "$(pkg-config --print-errors --modversion cfg)" == "${PKG_VERSION}"  # [unix]
+    - pkg-config --print-errors --exact-version ${PKG_VERSION} ${PKG_NAME}  # [unix]
 
 about:
   home: "https://git.ligo.org/virgo/virgoapp/Cfg"
