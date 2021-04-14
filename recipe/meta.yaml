@@ -1,12 +1,11 @@
 {% set name = "Cfg" %}
-{% set tag = "v9r0" %}
 {% set version = "9.0.0" %}
 
 package:
   name: "{{ name|lower }}"
   version: "{{ version }}"
 source:
-  url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ tag }}/{{ name }}-{{ tag }}.tar.gz
+  url: http://software.igwn.org/sources/source/{{ name|lower }}-{{ version }}.tar.gz
   sha256: 3151c52234e1afc5540aad004b28dddf702377c939bf9e68181de6ee9ac86701
 
 build:
@@ -22,9 +21,9 @@ requirements:
     - make  # [unix]
     - pkg-config  # [unix]
   host:
-    - cm >=9.0.0
+    - cm >=9.0.1
   run:
-    - cm >=9.0.0
+    - cm >=9.0.1
 
 test:
   requires:
