@@ -9,7 +9,9 @@ source:
   sha256: 3151c52234e1afc5540aad004b28dddf702377c939bf9e68181de6ee9ac86701
 
 build:
-  number: 1
+  run_exports:
+    - {{ pin_subpackage("cfg", max_pin="x") }}
+  number: 2
   skip: true  # [win or osx]
 
 requirements:
