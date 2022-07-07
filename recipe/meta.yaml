@@ -6,7 +6,7 @@ package:
   version: "{{ version }}"
 source:
   url: http://software.igwn.org/sources/source/{{ name|lower }}-{{ version }}.tar.gz
-  sha256: 6297f15f5972ff0e08dd634aee8ee956e5ebc89023334b5aa333ef850f7584c3
+  sha256: 66514d408083b825ebc8292280550023786c81f2714299524cffbba1701afc4e
 
 build:
   run_exports:
