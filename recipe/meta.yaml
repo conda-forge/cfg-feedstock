@@ -1,12 +1,12 @@
 {% set name = "Cfg" %}
-{% set version = "10.5.2" %}
+{% set version = "10.5.5" %}
 
 package:
   name: "{{ name|lower }}"
   version: "{{ version }}"
 source:
   url: http://software.igwn.org/sources/source/{{ name|lower }}-{{ version }}.tar.gz
-  sha256: 66514d408083b825ebc8292280550023786c81f2714299524cffbba1701afc4e
+  sha256: 6138e74342944bfeff3ffd83a69d704a43f92226216875f0f343304246e46ec1
 
 build:
   run_exports:
@@ -23,9 +23,9 @@ requirements:
     - make  # [unix]
     - pkg-config  # [unix]
   host:
-    - cm >=10.3.3
+    - cm >=10.3.7
   run:
-    - cm >=10.3.3
+    - cm >=10.3.7
 
 test:
   requires:
