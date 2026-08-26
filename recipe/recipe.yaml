@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  version: "10.5.9"
+
+package:
+  name: cfg
+  version: ${{ version }}
+
+source:
+  url: https://git.ligo.org/virgo/virgoapp/Cfg/-/archive/${{ version }}/Cfg-${{ version }}.tar.gz
+  sha256: 535a7dc5fa368e760059ddcc2a83a150018ffe242f114faedb2e7d27fc98b8da
+
+build:
+  number: 0
+  skip: not linux
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - make
+    - meson
+    - ninja
+    - pkg-config
+  host:
+    - cm
+  run_exports:
+    - ${{ pin_subpackage("cfg", upper_bound="x") }}
+
+tests:
+  - package_contents:
+      lib:
+        - cfg
+      include:
+        - cfg/CfgCommon.h
+  - requirements:
+      run:
+        - pkg-config
+    script:
+      - pkg-config --print-errors --exact-version ${{ version }} cfg
+
+about:
+  summary: Base library for Virgo processes
+  description: |
+    The Cfg package provide a base library for Virgo process
+    configuration parsing, log output and process state
+    management. Cfg is based on the Cm library.
+  homepage: https://git.ligo.org/virgo/virgoapp/Cfg
+  repository: https://git.ligo.org/virgo/virgoapp/Cfg.git
+  license: LGPL-2.1-or-later
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - erinelizabethseder-virgo
+    - fcarbogn
