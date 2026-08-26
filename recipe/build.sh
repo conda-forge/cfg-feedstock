@@ -2,16 +2,16 @@
 
 set -ex
 
-meson_config_args=(
-  --prefix="$PREFIX"
-  --libdir=lib
-  --wrap-mode=nofallback
-  --buildtype=release
-  --backend=ninja
-)
+# configure
+meson \
+  setup \
+  ${MESON_ARGS} \
+  --backend=ninja \
+  ./_build \
+  ${SRC_DIR}
 
-mkdir forgebuild
-cd forgebuild
-meson setup .. "${meson_config_args[@]}"
-ninja -v
-ninja install
+# build
+ninja -C ./_build -j ${CPU_COUNT} -v
+
+# install
+ninja -C ./_build -j ${CPU_COUNT} -v install
